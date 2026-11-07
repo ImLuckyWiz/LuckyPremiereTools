@@ -324,14 +324,14 @@ On the uploaded zip, `npm test` = **126 tests, 124 pass, 2 fail**. Both failures
 - [ ] **P0-4 LuckyDownloader ffmpeg location.** Inspect LuckyDownloader (or ask/check standard install/appData paths on Windows and macOS) to record the exact path(s) where it stores or installs `ffmpeg`. *Done when:* the exact path list for step (3) of `findFfmpeg` in section 6.2 is recorded in this file.
 
 ### Phase 1 — Pure core (no Premiere)
-- [ ] **P1-1** Create `src/silence-core.js` from Appendix A (copy, add the UMD tail: `module.exports` + `if (typeof window !== "undefined") window.LTSilence = …`). *Done when:* `node -e "require('./src/silence-core.js')"` works.
-- [ ] **P1-2** Add `PRESETS`, `thresholdToDb`, `dbToThreshold`, `hashParams`. *Done when:* unit tests (10.1) for them pass.
-- [ ] **P1-3** `parseFfmpegInfo(stderr)` with 3 fixtures in `test/fixtures/` (single stream; OBS 3 audio streams; video with no audio). *Done when:* tests pass on all three.
-- [ ] **P1-4** `summarize(...)` with the section 7 time model. *Done when:* the table rows in 7.1 are reproduced by a test (within 1 s).
-- [ ] **P1-5** `test/silence-core.test.js` per 10.1 (levels parity, margin, smoothing, chunkify, edge cases).
-- [ ] **P1-6** `test/silence-adapter.test.js`: build a silence file, run it through the **unmodified** `markers-core` chain exactly as in section 3.3, assert keep/gap counts, `planGapDelete.ok`, cut points on whole frames at 6 frame rates.
-- [ ] **P1-7** Change `pickMarkersFile` (6.5) + tests.
-- [ ] **P1-8** Add the new file to `npm run check` in `package.json`.
+- [x] **P1-1** Create `src/silence-core.js` from Appendix A (copy, add the UMD tail: `module.exports` + `if (typeof window !== "undefined") window.LTSilence = …`). *Done when:* `node -e "require('./src/silence-core.js')"` works.
+- [x] **P1-2** Add `PRESETS`, `thresholdToDb`, `dbToThreshold`, `hashParams`. *Done when:* unit tests (10.1) for them pass.
+- [x] **P1-3** `parseFfmpegInfo(stderr)` with 3 fixtures in `test/fixtures/` (single stream; OBS 3 audio streams; video with no audio). *Done when:* tests pass on all three.
+- [x] **P1-4** `summarize(...)` with the section 7 time model. *Done when:* the table rows in 7.1 are reproduced by a test (within 1 s).
+- [x] **P1-5** `test/silence-core.test.js` per 10.1 (levels parity, margin, smoothing, chunkify, edge cases).
+- [x] **P1-6** `test/silence-adapter.test.js`: build a silence file, run it through the **unmodified** `markers-core` chain exactly as in section 3.3, assert keep/gap counts, `planGapDelete.ok`, cut points on whole frames at 6 frame rates.
+- [x] **P1-7** Change `pickMarkersFile` (6.5) + tests.
+- [x] **P1-8** Add the new file to `npm run check` in `package.json`.
 - [ ] **P1-9 Golden test against real auto-editor.** Build auto-editor from the clone (or use a release that has `--smooth`; check with `auto-editor --help | grep smooth`). Generate fixtures per Appendix B for 2 media files (mono; stereo with left-only mic) and commit the expected `levels` and keep ranges. *Done when:* `silence-core` reproduces the expected levels within 1e-4 and the keep ranges **exactly**.
 
 ### Phase 2 — Node analyzer
@@ -626,3 +626,13 @@ No `preferences` key (it would overwrite the user's pad fields, see 3.4 item 3).
 | Tight | 0.04 | 0.2 / 0.2 | 0.2 s | 0.1 s | auto-editor defaults; short clean talking-head files |
 | **Balanced** | 0.04 | 0.25 / 0.25 | 0.6 s | 0.1 s | normal stream recordings |
 | Chunky | 0.04 | 0.3 / 0.3 | 1.5 s | 0.2 s | long, talky VODs; fewest cuts, fastest run |
+
+---
+
+## Findings while implementing (added by the implementer; newest last)
+
+1. **`ffmpeg -i` does not print a stream's own start time (affects 6.1, 6.2, R4, P0-3).** Checked with real ffmpeg 6.1.1 on a file whose audio starts 0.228 s after the video (`ffprobe` says `start_time=0.228000`): `ffmpeg -i` prints only the *container* `start: 0.000000` on the Duration line, and nothing per stream. So `parseFfmpegInfo` cannot return the `audioStart` the plan describes. It returns `containerStart` instead (the only value ffmpeg prints) and each audio stream also gets `title`. **Decision needed from the owner** (see the message that came with this change): read the per-stream start with `ffprobe` (ships next to ffmpeg in the usual builds, but is not guaranteed in LuckyDownloader's copy), or accept the offset risk and rely on P0-3 measuring it, or measure the offset another way.
+2. **Phase 0 status:** P0-1 and P0-2 have code ready (manifest change + temporary Node check log; `tools/make_synthetic_markers.js`) but still need to be *run in real Premiere by the owner*. P0-3 and P0-4 need the owner's files / machine and are not done.
+3. **`test/package.test.js`:** the test that pins the exact file list of `src/` was updated in P1-1 (five runtime files now), because adding `silence-core.js` would otherwise be a new failure. The other explicit lists named in 6.7 are still for P5-1.
+4. **The "ms rounding never moves a cut" claim (section 3.3) holds only for frame-aligned times.** Re-checked: 0 bad frames for every whole-frame time, 1 hour at 23.976, 25, 29.97, 30, 59.94, 60 fps. But a time that is exactly half way between two frames (e.g. 430.82 s at 25 fps = frame 10770.5) can round to either neighbour. This is harmless here because `analyze()` only produces `frame / fps` values on the sequence grid (D4), and `test/silence-adapter.test.js` pins that. It would matter if a plan were ever built on a different grid than the sequence's (e.g. the P6-4 trimmed-clip idea): keep the analysis fps equal to the sequence fps.
+5. **Section 7.1 totals** include `planTodo`'s fixed 4 s final-check allowance (the three columns alone sum to less for small cut counts). `silence-core.estimateRunSeconds` reproduces all six table rows with that allowance (test in `silence-core.test.js`).

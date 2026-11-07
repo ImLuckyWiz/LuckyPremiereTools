@@ -321,6 +321,7 @@ function summarizeSettings(raw) {
 
 // ---- finding the markers file by itself -------------------------------------------------------------------
 const MARKERS_SUFFIX = ".markers.json";
+const SILENCE_SUFFIX = ".silence.markers.json"; // the plan file the Silence mode writes (SILENCE_CUT_PLAN.md 6.3): never a Twitch markers file
 
 /** "E:\\a\\b\\video.mp4" or "/a/b/video.mp4" -> "video.mp4" */
 function baseName(path) {
@@ -360,7 +361,7 @@ function fileUrlForms(path) {
  */
 function pickMarkersFile(names, mediaFileName) {
   const lower = (x) => String(x).toLowerCase();
-  const cands = (names || []).filter((n) => lower(n).endsWith(MARKERS_SUFFIX));
+  const cands = (names || []).filter((n) => lower(n).endsWith(MARKERS_SUFFIX) && !lower(n).endsWith(SILENCE_SUFFIX));
   if (!cands.length) return null;
   if (mediaFileName) {
     const stem = lower(stripExtension(baseName(mediaFileName)));

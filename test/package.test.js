@@ -157,5 +157,5 @@ test("src/markers-core.js exists and exports the planning layer", () => {
 test("the shared file the page loads for the planning layer is the one in src/ (nothing is read from outside the package)", () => {
   const html = read(path.join(panel, "index.html"));
   assert.ok(html.includes('src="shared/markers-core.js"'));
-  assert.ok(fs.readdirSync(path.join(root, "src")).sort().join() === "guard.js,markers-core.js,progress.js,timecode.js", "src/ must hold exactly the four runtime files (the release zip ships all of src/)");
+  assert.ok(fs.readdirSync(path.join(root, "src")).sort().join() === "guard.js,markers-core.js,progress.js,silence-core.js,timecode.js", "src/ must hold exactly the five runtime files (the release zip ships all of src/)");
 });

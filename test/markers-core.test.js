@@ -171,6 +171,20 @@ test("folder paths become file URLs with accents and spaces encoded", () => {
   assert.deepEqual(core.fileUrlForms(""), []);
 });
 
+test("pickMarkersFile never picks a Silence-mode plan file (SILENCE_CUT_PLAN.md 6.5, risk R11)", () => {
+  // a folder with ONLY the silence plan: nothing to pick, even though it is the only .markers.json and its name starts like the video's
+  assert.equal(core.pickMarkersFile(["x.mp4", "x.silence.markers.json"], "x.mp4"), null);
+  assert.equal(core.pickMarkersFile(["x.mp4", "x.silence.markers.json"]), null);
+  assert.equal(core.pickMarkersFile(["X.MP4", "X.SILENCE.MARKERS.JSON"], "X.MP4"), null, "case does not matter");
+  // both: the real markers file wins, also when the silence file's name is the shorter (better) \"starts like the video's\" match
+  assert.deepEqual(core.pickMarkersFile(["x.mp4", "x.silence.markers.json", "x.markers.json"], "x.mp4"), { name: "x.markers.json", how: "same name as the video" });
+  assert.deepEqual(core.pickMarkersFile(["x.mp4", "x.silence.markers.json", "x - title.markers.json"], "x.mp4"), { name: "x - title.markers.json", how: "name starts like the video's" });
+  // a silence file is not counted as a candidate at all: with one real markers file left, the existing "only one in the folder" rule applies to it
+  assert.deepEqual(core.pickMarkersFile(["y.silence.markers.json", "x.markers.json"], "y.mp4"), { name: "x.markers.json", how: "the only one in the folder" });
+  // and it cannot make an ambiguous folder look unambiguous, nor an unambiguous one ambiguous
+  assert.equal(core.pickMarkersFile(["a.markers.json", "b.markers.json", "z.silence.markers.json"], "z.mp4"), null);
+  assert.deepEqual(core.pickMarkersFile(["a.markers.json", "b.markers.json", "z.silence.markers.json"], "b.mp4"), { name: "b.markers.json", how: "same name as the video" });
+});
 test("picks the markers file that belongs to the video", () => {
   const names = ["x - part1.mp4", "x - part1.markers.json", "x - part2.markers.json", "x - part1.markers.xml", "x - part1.clips.json"];
   assert.deepEqual(core.pickMarkersFile(names, "x - part1.mp4"), { name: "x - part1.markers.json", how: "same name as the video" });

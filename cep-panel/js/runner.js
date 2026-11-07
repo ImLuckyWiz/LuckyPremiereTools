@@ -942,5 +942,21 @@
       log("Host: " + env.appName + " " + env.appVersion);
     }
   } catch (e0) { log("Could not read the CEP / host version: " + e0); }
+  // SPIKE P0-1 (temporary, replaced by silence.js in Phase 2): is Node available in this panel, and does cep.fs still work?
+  (function () {
+    try {
+      log("Node check: typeof require = " + (typeof require));
+      if (typeof require === "function") {
+        log("Node check: process.versions.node = " + (typeof process !== "undefined" && process.versions ? process.versions.node : "(no process)"));
+        var cp = require("child_process"), r = cp.spawnSync("ffmpeg", ["-version"], { timeout: 5000, windowsHide: true });
+        if (r.error) log("Node check: spawnSync ffmpeg -version FAILED: " + (r.error.code || r.error.message) + " (expected if ffmpeg is not on PATH)");
+        else log("Node check: spawnSync ffmpeg -version exit " + r.status + ": " + String(r.stdout || "").split("\n")[0]);
+      }
+      if (window.cep && window.cep.fs) {
+        var rd = window.cep.fs.readdir(typeof process !== "undefined" && process.env && process.env.USERPROFILE ? process.env.USERPROFILE : "/");
+        log("Node check: cep.fs.readdir err = " + rd.err + (rd.data ? ", " + rd.data.length + " entries" : ""));
+      }
+    } catch (eN) { log("Node check threw: " + eN); }
+  })();
   log("Runner ready. LTCore " + (window.LTCore ? "loaded" : "NOT loaded: check shared/markers-core.js") + "; LTGuard " + (window.LTGuard ? "loaded" : "NOT loaded: check shared/guard.js") + "; cep.fs " + (window.cep && window.cep.fs ? "available" : "MISSING (the markers file cannot be read)") + ".");
 })();
