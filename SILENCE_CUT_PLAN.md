@@ -3,7 +3,7 @@
 > **Feature:** find silence in the video on the timeline and cut it out (auto-editor style), inside the existing CEP panel.
 > **Repo:** `luckytwitch-premiere-markers-cep` (panel "LuckyTwitch Markers", currently **v0.15.0**) → target **v0.16.0**.
 > **Written for:** an implementer (Claude or Gemini Flash) working one task at a time. Section 9 is the work list; everything else is the reasoning and the specs those tasks point to.
-> **Status:** plan only. No file in the repo has been changed. Every claim marked **VERIFIED** was measured or run while writing this plan (details in section 1).
+> **Status (updated after Phase 0/1):** read the last section, "Phase 0/1 outcome", first: it supersedes the text below where they differ (ffprobe instead of `ffmpeg -i` for start times, ffmpeg search paths, Node 17.7.2). Original status: plan only. No file in the repo has been changed. Every claim marked **VERIFIED** was measured or run while writing this plan (details in section 1).
 
 ---
 
@@ -318,10 +318,10 @@ Do the tasks **in order**. After each task: `npm run check` and `npm test` must 
 On the uploaded zip, `npm test` = **126 tests, 124 pass, 2 fail**. Both failures **pre-exist** and are caused by the zip, not by code: `test/fixtures/doitall-real.log` is missing (`progress.test.js`), and `install-mac.command` has CRLF line endings (mac installer test). Do not "fix" them as part of this feature; just do not add failures.
 
 ### Phase 0 — Spikes (real Premiere, small, answer unknowns first)
-- [ ] **P0-1 Node in the panel.** Add the two `CEFCommandLine` parameters. In the panel log print `typeof require`, `process.versions.node`, and run `require("child_process").spawnSync("ffmpeg",["-version"])`. Also confirm `window.cep.fs.readdir` still works. *Done when:* the log shows Node available on at least one Windows and one macOS Premiere (v14+ and a recent one).
+- [x] **P0-1 Node in the panel (Windows verified; macOS still open).** Add the two `CEFCommandLine` parameters. In the panel log print `typeof require`, `process.versions.node`, and run `require("child_process").spawnSync("ffmpeg",["-version"])`. Also confirm `window.cep.fs.readdir` still works. *Done when:* the log shows Node available on at least one Windows and one macOS Premiere (v14+ and a recent one).
 - [ ] **P0-2 Cut scaling.** On a real timeline cut with 500 and then 1000 pieces (use the existing `Cut` button with a synthetic markers file), record seconds for the razor phase. *Done when:* a 3-row table replaces the extrapolation in section 7.1.
-- [ ] **P0-3 Audio start offset.** For 5 real Twitch VOD files (and an OBS file), run `ffmpeg -i file` and record the audio stream `start:` value. *Done when:* a one-line conclusion ("always < 1 frame" or "shift needed") is in this file.
-- [ ] **P0-4 LuckyDownloader ffmpeg location.** Inspect LuckyDownloader (or ask/check standard install/appData paths on Windows and macOS) to record the exact path(s) where it stores or installs `ffmpeg`. *Done when:* the exact path list for step (3) of `findFfmpeg` in section 6.2 is recorded in this file.
+- [x] **P0-3 Audio start offset (see "Phase 0/1 outcome").** For 5 real Twitch VOD files (and an OBS file), run `ffmpeg -i file` and record the audio stream `start:` value. *Done when:* a one-line conclusion ("always < 1 frame" or "shift needed") is in this file.
+- [x] **P0-4 LuckyDownloader ffmpeg location (see "Phase 0/1 outcome").** Inspect LuckyDownloader (or ask/check standard install/appData paths on Windows and macOS) to record the exact path(s) where it stores or installs `ffmpeg`. *Done when:* the exact path list for step (3) of `findFfmpeg` in section 6.2 is recorded in this file.
 
 ### Phase 1 — Pure core (no Premiere)
 - [x] **P1-1** Create `src/silence-core.js` from Appendix A (copy, add the UMD tail: `module.exports` + `if (typeof window !== "undefined") window.LTSilence = …`). *Done when:* `node -e "require('./src/silence-core.js')"` works.
@@ -636,3 +636,43 @@ No `preferences` key (it would overwrite the user's pad fields, see 3.4 item 3).
 3. **`test/package.test.js`:** the test that pins the exact file list of `src/` was updated in P1-1 (five runtime files now), because adding `silence-core.js` would otherwise be a new failure. The other explicit lists named in 6.7 are still for P5-1.
 4. **The "ms rounding never moves a cut" claim (section 3.3) holds only for frame-aligned times.** Re-checked: 0 bad frames for every whole-frame time, 1 hour at 23.976, 25, 29.97, 30, 59.94, 60 fps. But a time that is exactly half way between two frames (e.g. 430.82 s at 25 fps = frame 10770.5) can round to either neighbour. This is harmless here because `analyze()` only produces `frame / fps` values on the sequence grid (D4), and `test/silence-adapter.test.js` pins that. It would matter if a plan were ever built on a different grid than the sequence's (e.g. the P6-4 trimmed-clip idea): keep the analysis fps equal to the sequence fps.
 5. **Section 7.1 totals** include `planTodo`'s fixed 4 s final-check allowance (the three columns alone sum to less for small cut counts). `silence-core.estimateRunSeconds` reproduces all six table rows with that allowance (test in `silence-core.test.js`).
+
+---
+
+## Phase 0/1 outcome (supersedes earlier text where they differ)
+
+### P0-1 Node in the panel: VERIFIED on Windows, macOS still open
+Panel log from the owner's real Premiere (screenshot): CEP runtime 12.0.1; host PPRO 26.5.0; `typeof require = function`; **Node 17.7.2**; `spawnSync ffmpeg -version` exit 0 (WinGet build N-125875-g5d4d3bdc61-20260731); `cep.fs.readdir` err 0 (74 entries); "Runner ready. LTCore loaded; LTGuard loaded; cep.fs available". So `--enable-nodejs --mixed-context` works and the old modules still load.
+- **Consequence:** the Node side runs **Node 17.7.2**. Write `silence.js` for it: no `fetch`, no Node 18+ APIs (`Array.prototype.findLast`, `fs.glob`, `AbortSignal.any`...). The test runner here is Node 22, so a test passing is not proof the API exists in 17.
+- **Open:** the same check on macOS Premiere (R8). The spike "Node check" log stays until Phase 2 replaces it.
+
+### P0-2 Cut scaling: files ready, NOT measured
+`tools/synthetic/500/` and `tools/synthetic/1000/` hold one `.markers.json` each for the owner's Zentreya VOD (3130.01 s, sequence 60 fps); the real planner reports exactly 500 and 1000 cuts. They have the same file name, so only ONE may sit next to the video at a time. Needs the razor time from a real run; the 3-row table replacing section 7.1's extrapolation is still to write.
+
+### P0-3 Audio start offset (ffprobe `start_time`, owner's files)
+| File | video start | audio start |
+|---|---:|---:|
+| Twitch VOD 1 (Zentreya 2907686941) | 0 | 0.006 |
+| Twitch VOD 2 (Vexoria part 1) | 0 | 0 |
+| Twitch VOD 3 (Vexoria part 2) | 0 | 0 |
+| Twitch VOD 4 (2919628658) | 0.016667 | 0 |
+| Twitch VOD 5 (2906131741) | 0.032667 | 0 |
+| OBS "How to Fish" | 0 | 0.163 (another OBS test file: 0.229) |
+
+**Conclusion:** Twitch VODs: audio vs video differ by at most 2 frames at 60 fps (6 ms to 33 ms); **OBS recordings: the audio starts 163-229 ms late, which is as big as the margins, so a shift is required.** Decision: read starts with `ffprobe` (LuckyDownloader ships it, see P0-4); `silence-core.audioShift(videoStart, audioStart, fps)` = audioStart - videoStart, and 0 if smaller than half a frame. Verified here: `ffmpeg ... -vn -f s16le -` does NOT pad a late audio start (audio starting 0.478 s late decoded to exactly its own length), so bucket i sits at `shift + i/fps`.
+**Unverified:** that Premiere's time zero is the video's first frame. For OBS files all origins agree; for the 1-2 frame Twitch cases the possible error is at most 2 frames. Add to the 10.4 checklist: run Silence on the OBS file and check the cuts land on speech, not 0.16 s early.
+
+### P0-4 Where ffmpeg/ffprobe live (from LuckyDownloader `core/runtime.py`, `core/tools.py`)
+`findFfmpeg` step (3) uses, in this order (each also for `ffprobe`; validate with `-version`):
+- **Windows:** env `LUCKYDOWNLOADER_TOOLS_DIR`, env `LUCKYTWITCH_TOOLS_DIR`; `%LOCALAPPDATA%\LuckyDownloader\tools\`; legacy `%LOCALAPPDATA%\LuckyTwitch\tools\`; then PATH (`where.exe`).
+- **macOS:** same two env vars; `~/Library/Application Support/LuckyDownloader/tools/`; legacy `~/Library/Application Support/LuckyTwitch/tools/`; then `/opt/homebrew/bin`, `/usr/local/bin`, `/opt/local/bin`; then PATH.
+- Portable/app-bundle locations (`<APP_DIR>`, `<APP_DIR>/bin`) are LuckyDownloader's own and not known to the panel: skip them.
+ffprobe is looked up in the same folder as the ffmpeg that was found first, then by the same list.
+
+### P1-9 Golden test against real auto-editor: BLOCKED, not done
+- PyPI release 29.3.1 has `--margin` but no `--smooth`.
+- auto-editor HEAD (a602b0e, 2026-11-07) has `--smooth`. Nim 2.2.15 nightly downloads from GitHub and works here, and `nimcrypto` 0.7.3 can be cloned from GitHub (`nimble` itself cannot reach its package list). A dynamic build (`-d:dynamic`) compiles Nim fine but fails in C: HEAD needs **FFmpeg >= 7.1** (`enum AVCodecConfig`), this machine has 6.1. Building FFmpeg from source (`nimble makeff`) was not tried.
+- Meanwhile the unit tests check each algorithm component against auto-editor's specification, as the owner noted.
+
+### Changes in this step
+`src/silence-core.js`: new `parseFfprobeStarts(csv)` and `audioShift(videoStart, audioStart, fps)`; 3 real ffprobe fixtures; 4 new tests. `parseFfmpegInfo` is unchanged and stays the source of duration, rate, channels, titles. Sections 6.1/6.2/R4 above are superseded by this: `probe()` = `ffmpeg -i` (info) + `ffprobe` (starts), and `analyze()` ranges for stream k are shifted by `audioShift(videoStart, audioStarts[k], fps)` before the per-frame max over streams is taken... **correction, recorded so Phase 2 does not copy the old text:** shift each stream's *levels* (or ranges) first, then combine; do not combine first.

@@ -1,0 +1,2016 @@
+{
+  "format": "luckytwitch-markers",
+  "version": 1,
+  "name": "Zentreya - SHOCKTOBER ITS TIME FOR MORE HORROR SLOP GAMERSUPPS FLAVOR NEW FERAL HALLOWEEN OUTFIT - Halloween On Goober Street (synthetic 500 cuts)",
+  "fps": 60,
+  "duration": 3130.01,
+  "part": {
+    "start": 0,
+    "end": 3130.01
+  },
+  "source": {
+    "tool": "luckytwitch-synthetic-spike"
+  },
+  "markers": [
+    {
+      "kind": "clip",
+      "name": "Synthetic 1",
+      "start": 6.248,
+      "end": 12.495,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 2",
+      "start": 18.743,
+      "end": 24.99,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 3",
+      "start": 31.238,
+      "end": 37.485,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 4",
+      "start": 43.733,
+      "end": 49.98,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 5",
+      "start": 56.228,
+      "end": 62.475,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 6",
+      "start": 68.723,
+      "end": 74.97,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 7",
+      "start": 81.218,
+      "end": 87.465,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 8",
+      "start": 93.713,
+      "end": 99.96,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 9",
+      "start": 106.208,
+      "end": 112.455,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 10",
+      "start": 118.703,
+      "end": 124.95,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 11",
+      "start": 131.198,
+      "end": 137.446,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 12",
+      "start": 143.693,
+      "end": 149.941,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 13",
+      "start": 156.188,
+      "end": 162.436,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 14",
+      "start": 168.683,
+      "end": 174.931,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 15",
+      "start": 181.178,
+      "end": 187.426,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 16",
+      "start": 193.673,
+      "end": 199.921,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 17",
+      "start": 206.168,
+      "end": 212.416,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 18",
+      "start": 218.663,
+      "end": 224.911,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 19",
+      "start": 231.158,
+      "end": 237.406,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 20",
+      "start": 243.653,
+      "end": 249.901,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 21",
+      "start": 256.149,
+      "end": 262.396,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 22",
+      "start": 268.644,
+      "end": 274.891,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 23",
+      "start": 281.139,
+      "end": 287.386,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 24",
+      "start": 293.634,
+      "end": 299.881,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 25",
+      "start": 306.129,
+      "end": 312.376,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 26",
+      "start": 318.624,
+      "end": 324.871,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 27",
+      "start": 331.119,
+      "end": 337.366,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 28",
+      "start": 343.614,
+      "end": 349.861,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 29",
+      "start": 356.109,
+      "end": 362.356,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 30",
+      "start": 368.604,
+      "end": 374.851,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 31",
+      "start": 381.099,
+      "end": 387.347,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 32",
+      "start": 393.594,
+      "end": 399.842,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 33",
+      "start": 406.089,
+      "end": 412.337,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 34",
+      "start": 418.584,
+      "end": 424.832,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 35",
+      "start": 431.079,
+      "end": 437.327,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 36",
+      "start": 443.574,
+      "end": 449.822,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 37",
+      "start": 456.069,
+      "end": 462.317,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 38",
+      "start": 468.564,
+      "end": 474.812,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 39",
+      "start": 481.059,
+      "end": 487.307,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 40",
+      "start": 493.554,
+      "end": 499.802,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 41",
+      "start": 506.05,
+      "end": 512.297,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 42",
+      "start": 518.545,
+      "end": 524.792,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 43",
+      "start": 531.04,
+      "end": 537.287,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 44",
+      "start": 543.535,
+      "end": 549.782,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 45",
+      "start": 556.03,
+      "end": 562.277,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 46",
+      "start": 568.525,
+      "end": 574.772,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 47",
+      "start": 581.02,
+      "end": 587.267,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 48",
+      "start": 593.515,
+      "end": 599.762,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 49",
+      "start": 606.01,
+      "end": 612.257,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 50",
+      "start": 618.505,
+      "end": 624.752,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 51",
+      "start": 631,
+      "end": 637.248,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 52",
+      "start": 643.495,
+      "end": 649.743,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 53",
+      "start": 655.99,
+      "end": 662.238,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 54",
+      "start": 668.485,
+      "end": 674.733,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 55",
+      "start": 680.98,
+      "end": 687.228,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 56",
+      "start": 693.475,
+      "end": 699.723,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 57",
+      "start": 705.97,
+      "end": 712.218,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 58",
+      "start": 718.465,
+      "end": 724.713,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 59",
+      "start": 730.96,
+      "end": 737.208,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 60",
+      "start": 743.455,
+      "end": 749.703,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 61",
+      "start": 755.951,
+      "end": 762.198,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 62",
+      "start": 768.446,
+      "end": 774.693,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 63",
+      "start": 780.941,
+      "end": 787.188,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 64",
+      "start": 793.436,
+      "end": 799.683,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 65",
+      "start": 805.931,
+      "end": 812.178,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 66",
+      "start": 818.426,
+      "end": 824.673,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 67",
+      "start": 830.921,
+      "end": 837.168,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 68",
+      "start": 843.416,
+      "end": 849.663,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 69",
+      "start": 855.911,
+      "end": 862.158,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 70",
+      "start": 868.406,
+      "end": 874.653,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 71",
+      "start": 880.901,
+      "end": 887.149,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 72",
+      "start": 893.396,
+      "end": 899.644,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 73",
+      "start": 905.891,
+      "end": 912.139,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 74",
+      "start": 918.386,
+      "end": 924.634,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 75",
+      "start": 930.881,
+      "end": 937.129,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 76",
+      "start": 943.376,
+      "end": 949.624,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 77",
+      "start": 955.871,
+      "end": 962.119,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 78",
+      "start": 968.366,
+      "end": 974.614,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 79",
+      "start": 980.861,
+      "end": 987.109,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 80",
+      "start": 993.356,
+      "end": 999.604,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 81",
+      "start": 1005.852,
+      "end": 1012.099,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 82",
+      "start": 1018.347,
+      "end": 1024.594,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 83",
+      "start": 1030.842,
+      "end": 1037.089,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 84",
+      "start": 1043.337,
+      "end": 1049.584,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 85",
+      "start": 1055.832,
+      "end": 1062.079,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 86",
+      "start": 1068.327,
+      "end": 1074.574,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 87",
+      "start": 1080.822,
+      "end": 1087.069,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 88",
+      "start": 1093.317,
+      "end": 1099.564,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 89",
+      "start": 1105.812,
+      "end": 1112.059,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 90",
+      "start": 1118.307,
+      "end": 1124.554,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 91",
+      "start": 1130.802,
+      "end": 1137.05,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 92",
+      "start": 1143.297,
+      "end": 1149.545,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 93",
+      "start": 1155.792,
+      "end": 1162.04,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 94",
+      "start": 1168.287,
+      "end": 1174.535,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 95",
+      "start": 1180.782,
+      "end": 1187.03,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 96",
+      "start": 1193.277,
+      "end": 1199.525,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 97",
+      "start": 1205.772,
+      "end": 1212.02,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 98",
+      "start": 1218.267,
+      "end": 1224.515,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 99",
+      "start": 1230.762,
+      "end": 1237.01,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 100",
+      "start": 1243.257,
+      "end": 1249.505,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 101",
+      "start": 1255.753,
+      "end": 1262,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 102",
+      "start": 1268.248,
+      "end": 1274.495,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 103",
+      "start": 1280.743,
+      "end": 1286.99,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 104",
+      "start": 1293.238,
+      "end": 1299.485,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 105",
+      "start": 1305.733,
+      "end": 1311.98,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 106",
+      "start": 1318.228,
+      "end": 1324.475,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 107",
+      "start": 1330.723,
+      "end": 1336.97,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 108",
+      "start": 1343.218,
+      "end": 1349.465,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 109",
+      "start": 1355.713,
+      "end": 1361.96,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 110",
+      "start": 1368.208,
+      "end": 1374.455,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 111",
+      "start": 1380.703,
+      "end": 1386.951,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 112",
+      "start": 1393.198,
+      "end": 1399.446,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 113",
+      "start": 1405.693,
+      "end": 1411.941,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 114",
+      "start": 1418.188,
+      "end": 1424.436,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 115",
+      "start": 1430.683,
+      "end": 1436.931,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 116",
+      "start": 1443.178,
+      "end": 1449.426,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 117",
+      "start": 1455.673,
+      "end": 1461.921,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 118",
+      "start": 1468.168,
+      "end": 1474.416,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 119",
+      "start": 1480.663,
+      "end": 1486.911,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 120",
+      "start": 1493.158,
+      "end": 1499.406,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 121",
+      "start": 1505.654,
+      "end": 1511.901,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 122",
+      "start": 1518.149,
+      "end": 1524.396,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 123",
+      "start": 1530.644,
+      "end": 1536.891,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 124",
+      "start": 1543.139,
+      "end": 1549.386,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 125",
+      "start": 1555.634,
+      "end": 1561.881,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 126",
+      "start": 1568.129,
+      "end": 1574.376,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 127",
+      "start": 1580.624,
+      "end": 1586.871,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 128",
+      "start": 1593.119,
+      "end": 1599.366,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 129",
+      "start": 1605.614,
+      "end": 1611.861,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 130",
+      "start": 1618.109,
+      "end": 1624.356,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 131",
+      "start": 1630.604,
+      "end": 1636.852,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 132",
+      "start": 1643.099,
+      "end": 1649.347,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 133",
+      "start": 1655.594,
+      "end": 1661.842,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 134",
+      "start": 1668.089,
+      "end": 1674.337,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 135",
+      "start": 1680.584,
+      "end": 1686.832,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 136",
+      "start": 1693.079,
+      "end": 1699.327,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 137",
+      "start": 1705.574,
+      "end": 1711.822,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 138",
+      "start": 1718.069,
+      "end": 1724.317,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 139",
+      "start": 1730.564,
+      "end": 1736.812,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 140",
+      "start": 1743.059,
+      "end": 1749.307,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 141",
+      "start": 1755.555,
+      "end": 1761.802,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 142",
+      "start": 1768.05,
+      "end": 1774.297,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 143",
+      "start": 1780.545,
+      "end": 1786.792,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 144",
+      "start": 1793.04,
+      "end": 1799.287,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 145",
+      "start": 1805.535,
+      "end": 1811.782,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 146",
+      "start": 1818.03,
+      "end": 1824.277,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 147",
+      "start": 1830.525,
+      "end": 1836.772,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 148",
+      "start": 1843.02,
+      "end": 1849.267,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 149",
+      "start": 1855.515,
+      "end": 1861.762,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 150",
+      "start": 1868.01,
+      "end": 1874.257,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 151",
+      "start": 1880.505,
+      "end": 1886.753,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 152",
+      "start": 1893,
+      "end": 1899.248,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 153",
+      "start": 1905.495,
+      "end": 1911.743,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 154",
+      "start": 1917.99,
+      "end": 1924.238,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 155",
+      "start": 1930.485,
+      "end": 1936.733,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 156",
+      "start": 1942.98,
+      "end": 1949.228,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 157",
+      "start": 1955.475,
+      "end": 1961.723,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 158",
+      "start": 1967.97,
+      "end": 1974.218,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 159",
+      "start": 1980.465,
+      "end": 1986.713,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 160",
+      "start": 1992.96,
+      "end": 1999.208,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 161",
+      "start": 2005.456,
+      "end": 2011.703,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 162",
+      "start": 2017.951,
+      "end": 2024.198,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 163",
+      "start": 2030.446,
+      "end": 2036.693,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 164",
+      "start": 2042.941,
+      "end": 2049.188,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 165",
+      "start": 2055.436,
+      "end": 2061.683,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 166",
+      "start": 2067.931,
+      "end": 2074.178,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 167",
+      "start": 2080.426,
+      "end": 2086.673,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 168",
+      "start": 2092.921,
+      "end": 2099.168,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 169",
+      "start": 2105.416,
+      "end": 2111.663,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 170",
+      "start": 2117.911,
+      "end": 2124.158,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 171",
+      "start": 2130.406,
+      "end": 2136.654,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 172",
+      "start": 2142.901,
+      "end": 2149.149,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 173",
+      "start": 2155.396,
+      "end": 2161.644,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 174",
+      "start": 2167.891,
+      "end": 2174.139,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 175",
+      "start": 2180.386,
+      "end": 2186.634,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 176",
+      "start": 2192.881,
+      "end": 2199.129,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 177",
+      "start": 2205.376,
+      "end": 2211.624,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 178",
+      "start": 2217.871,
+      "end": 2224.119,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 179",
+      "start": 2230.366,
+      "end": 2236.614,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 180",
+      "start": 2242.861,
+      "end": 2249.109,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 181",
+      "start": 2255.357,
+      "end": 2261.604,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 182",
+      "start": 2267.852,
+      "end": 2274.099,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 183",
+      "start": 2280.347,
+      "end": 2286.594,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 184",
+      "start": 2292.842,
+      "end": 2299.089,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 185",
+      "start": 2305.337,
+      "end": 2311.584,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 186",
+      "start": 2317.832,
+      "end": 2324.079,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 187",
+      "start": 2330.327,
+      "end": 2336.574,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 188",
+      "start": 2342.822,
+      "end": 2349.069,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 189",
+      "start": 2355.317,
+      "end": 2361.564,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 190",
+      "start": 2367.812,
+      "end": 2374.059,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 191",
+      "start": 2380.307,
+      "end": 2386.555,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 192",
+      "start": 2392.802,
+      "end": 2399.05,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 193",
+      "start": 2405.297,
+      "end": 2411.545,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 194",
+      "start": 2417.792,
+      "end": 2424.04,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 195",
+      "start": 2430.287,
+      "end": 2436.535,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 196",
+      "start": 2442.782,
+      "end": 2449.03,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 197",
+      "start": 2455.277,
+      "end": 2461.525,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 198",
+      "start": 2467.772,
+      "end": 2474.02,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 199",
+      "start": 2480.267,
+      "end": 2486.515,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 200",
+      "start": 2492.762,
+      "end": 2499.01,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 201",
+      "start": 2505.258,
+      "end": 2511.505,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 202",
+      "start": 2517.753,
+      "end": 2524,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 203",
+      "start": 2530.248,
+      "end": 2536.495,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 204",
+      "start": 2542.743,
+      "end": 2548.99,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 205",
+      "start": 2555.238,
+      "end": 2561.485,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 206",
+      "start": 2567.733,
+      "end": 2573.98,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 207",
+      "start": 2580.228,
+      "end": 2586.475,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 208",
+      "start": 2592.723,
+      "end": 2598.97,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 209",
+      "start": 2605.218,
+      "end": 2611.465,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 210",
+      "start": 2617.713,
+      "end": 2623.96,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 211",
+      "start": 2630.208,
+      "end": 2636.456,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 212",
+      "start": 2642.703,
+      "end": 2648.951,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 213",
+      "start": 2655.198,
+      "end": 2661.446,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 214",
+      "start": 2667.693,
+      "end": 2673.941,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 215",
+      "start": 2680.188,
+      "end": 2686.436,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 216",
+      "start": 2692.683,
+      "end": 2698.931,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 217",
+      "start": 2705.178,
+      "end": 2711.426,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 218",
+      "start": 2717.673,
+      "end": 2723.921,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 219",
+      "start": 2730.168,
+      "end": 2736.416,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 220",
+      "start": 2742.663,
+      "end": 2748.911,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 221",
+      "start": 2755.159,
+      "end": 2761.406,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 222",
+      "start": 2767.654,
+      "end": 2773.901,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 223",
+      "start": 2780.149,
+      "end": 2786.396,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 224",
+      "start": 2792.644,
+      "end": 2798.891,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 225",
+      "start": 2805.139,
+      "end": 2811.386,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 226",
+      "start": 2817.634,
+      "end": 2823.881,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 227",
+      "start": 2830.129,
+      "end": 2836.376,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 228",
+      "start": 2842.624,
+      "end": 2848.871,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 229",
+      "start": 2855.119,
+      "end": 2861.366,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 230",
+      "start": 2867.614,
+      "end": 2873.861,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 231",
+      "start": 2880.109,
+      "end": 2886.357,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 232",
+      "start": 2892.604,
+      "end": 2898.852,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 233",
+      "start": 2905.099,
+      "end": 2911.347,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 234",
+      "start": 2917.594,
+      "end": 2923.842,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 235",
+      "start": 2930.089,
+      "end": 2936.337,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 236",
+      "start": 2942.584,
+      "end": 2948.832,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 237",
+      "start": 2955.079,
+      "end": 2961.327,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 238",
+      "start": 2967.574,
+      "end": 2973.822,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 239",
+      "start": 2980.069,
+      "end": 2986.317,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 240",
+      "start": 2992.564,
+      "end": 2998.812,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 241",
+      "start": 3005.06,
+      "end": 3011.307,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 242",
+      "start": 3017.555,
+      "end": 3023.802,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 243",
+      "start": 3030.05,
+      "end": 3036.297,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 244",
+      "start": 3042.545,
+      "end": 3048.792,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 245",
+      "start": 3055.04,
+      "end": 3061.287,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 246",
+      "start": 3067.535,
+      "end": 3073.782,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 247",
+      "start": 3080.03,
+      "end": 3086.277,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 248",
+      "start": 3092.525,
+      "end": 3098.772,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 249",
+      "start": 3105.02,
+      "end": 3111.267,
+      "views": 0,
+      "comment": ""
+    },
+    {
+      "kind": "clip",
+      "name": "Synthetic 250",
+      "start": 3117.515,
+      "end": 3123.762,
+      "views": 0,
+      "comment": ""
+    }
+  ]
+}

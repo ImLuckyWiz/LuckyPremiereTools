@@ -300,3 +300,29 @@ test("buildSilenceFile: passes the unmodified parseMarkersFile with nothing skip
   assert.equal(parsed.fps, 59.94); assert.equal(parsed.duration, 70);
   assert.equal(S.buildSilenceFile([], meta).markers.length, 0);       // all silent is still a valid object
 });
+
+// ---- P0-3: ffprobe stream start times ---------------------------------------------------------------------------------------------
+// The three ffprobe-starts-*.txt fixtures are the owner's real ffprobe output for a Twitch VOD (audio 6 ms late, plus a data stream),
+// a Twitch VOD whose VIDEO starts one frame late at 60 fps, and an OBS recording whose audio starts 163 ms late.
+const probeFixture = (n) => fs.readFileSync(path.join(__dirname, "fixtures", "ffprobe-starts-" + n + ".txt"), "utf8");
+test("parseFfprobeStarts: real ffprobe csv from Twitch and OBS files", () => {
+  assert.deepEqual(S.parseFfprobeStarts(probeFixture("twitch1")), { videoStart: 0, audioStarts: [0.006] });
+  assert.deepEqual(S.parseFfprobeStarts(probeFixture("twitch4")), { videoStart: 0.016667, audioStarts: [0] });
+  assert.deepEqual(S.parseFfprobeStarts(probeFixture("obs")), { videoStart: 0, audioStarts: [0.163] });
+});
+test("parseFfprobeStarts: several audio streams stay in file order, N/A and blanks become null, CRLF is fine, junk never throws", () => {
+  assert.deepEqual(S.parseFfprobeStarts("0,video,N/A\r\n1,audio,0.1\r\n2,audio,N/A\r\n3,audio,\r\n4,video,9\r\n"), { videoStart: null, audioStarts: [0.1, null, null] });
+  const empty = { videoStart: null, audioStarts: [] };
+  for (const x of ["", null, undefined, "garbage", 42, "a,b"]) assert.deepEqual(S.parseFfprobeStarts(x), empty);
+});
+test("audioShift: OBS audio 163 ms late moves the ranges by +0.163 s; sub-half-frame offsets and missing values move nothing", () => {
+  assert.equal(S.audioShift(0, 0.163, 60), 0.163);
+  assert.equal(S.audioShift(0, 0.006, 60), 0);                   // 6 ms < half a frame (8.33 ms)
+  assert.equal(S.audioShift(0, 0.009, 60), 0.009);
+  assert.equal(S.audioShift(null, null, 60), 0);
+  assert.equal(S.audioShift(0, 0, 0), 0);
+});
+test("audioShift: a late VIDEO start means the audio is ahead, so the shift is negative", () => {
+  assert.ok(Math.abs(S.audioShift(0.016667, 0, 60) + 0.016667) < 1e-9);
+  assert.ok(Math.abs(S.audioShift(0.032667, 0, 60) + 0.032667) < 1e-9);
+});

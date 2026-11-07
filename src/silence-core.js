@@ -171,6 +171,44 @@ function parseFfmpegInfo(text) {
   return info;
 }
 
+// ---- ffprobe stream start times (P0-3) ----------------------------------------------------------------------------------------
+/**
+ * Text of `ffprobe -v error -show_entries stream=index,codec_type,start_time -of csv=p=0 <file>` -> {videoStart, audioStarts}.
+ * Lines look like "0,video,0.000000", "1,audio,0.006000", "2,data,0.000000" (checked on 5 real Twitch VODs and 2 OBS recordings).
+ *  - videoStart: start_time of the FIRST video stream in seconds, or null (no video stream, or "N/A").
+ *  - audioStarts: one number-or-null per audio stream, in file order, so audioStarts[k] belongs to `-map 0:a:k` and to
+ *    parseFfmpegInfo(...).audioStreams[k].
+ * Pure; never throws (empty or unrelated text gives {videoStart: null, audioStarts: []}).
+ */
+function parseFfprobeStarts(text) {
+  const out = { videoStart: null, audioStarts: [] };
+  const num = (v) => { const n = Number(String(v).trim()); return String(v).trim() !== "" && isFinite(n) ? n : null; };
+  let seenVideo = false;
+  for (const line of String(text == null ? "" : text).split(/\r?\n/)) {
+    const f = line.split(",");
+    if (f.length < 3) continue;
+    const kind = f[1].trim();
+    if (kind === "video" && !seenVideo) { seenVideo = true; out.videoStart = num(f[2]); }
+    else if (kind === "audio") out.audioStarts.push(num(f[2]));
+  }
+  return out;
+}
+
+/**
+ * Seconds to ADD to every range that analyze() produced for one audio stream, so the ranges are on the video's clock.
+ * The decoded PCM (`ffmpeg ... -vn -f s16le -`) starts at the stream's first sample and is NOT padded with silence for a late start
+ * (verified: audio starting 0.478 s late decodes to exactly its own length), so level bucket i sits at audioStart - videoStart + i/fps.
+ * A missing start time counts as 0. The shift is 0 unless it is at least half a frame: smaller offsets cannot move a cut (D4).
+ * UNVERIFIED in Premiere: that Premiere's time zero is the video's first frame. For OBS-style files (video 0, audio late) every origin
+ * agrees; for the 1-2 frame video offsets seen on some Twitch VODs the two possible origins differ by at most 2 frames.
+ */
+function audioShift(videoStart, audioStart, fps) {
+  const a = typeof audioStart === "number" && isFinite(audioStart) ? audioStart : 0;
+  const v = typeof videoStart === "number" && isFinite(videoStart) ? videoStart : 0;
+  const off = a - v, half = fps > 0 ? 0.5 / fps : 0.001;
+  return Math.abs(off) >= half ? off : 0;
+}
+
 // ---- run-time estimate and summary --------------------------------------------------------------------------------------------
 /**
  * Rough seconds for a cut + delete + relink run: the same model as runner.js planTodo() (fitted to real runs of 169-199 cuts, so beyond
@@ -217,6 +255,6 @@ function summarize(ranges, durationSec, fps, planCounts) {
   return { speechSec: speech, silenceSec: silence, removedPct: dur > 0 ? (100 * silence) / dur : 0, silences, cuts, keeps, estSeconds: est.total, est };
 }
 
-const LT_SILENCE_API = { buildSilenceFile, DEFAULTS, PRESETS, toFrames, PeakAccumulator, levelsToMask, applyMargin, applySmoothing, chunkify, analyze, thresholdToDb, dbToThreshold, hashParams, parseFfmpegInfo, estimateRunSeconds, summarize };
+const LT_SILENCE_API = { buildSilenceFile, DEFAULTS, PRESETS, toFrames, PeakAccumulator, levelsToMask, applyMargin, applySmoothing, chunkify, analyze, thresholdToDb, dbToThreshold, hashParams, parseFfmpegInfo, parseFfprobeStarts, audioShift, estimateRunSeconds, summarize };
 if (typeof module !== "undefined" && module.exports) module.exports = LT_SILENCE_API;
 if (typeof window !== "undefined") window.LTSilence = LT_SILENCE_API;
