@@ -319,7 +319,7 @@ On the uploaded zip, `npm test` = **126 tests, 124 pass, 2 fail**. Both failures
 
 ### Phase 0 — Spikes (real Premiere, small, answer unknowns first)
 - [x] **P0-1 Node in the panel (Windows verified; macOS still open).** Add the two `CEFCommandLine` parameters. In the panel log print `typeof require`, `process.versions.node`, and run `require("child_process").spawnSync("ffmpeg",["-version"])`. Also confirm `window.cep.fs.readdir` still works. *Done when:* the log shows Node available on at least one Windows and one macOS Premiere (v14+ and a recent one).
-- [ ] **P0-2 Cut scaling.** On a real timeline cut with 500 and then 1000 pieces (use the existing `Cut` button with a synthetic markers file), record seconds for the razor phase. *Done when:* a 3-row table replaces the extrapolation in section 7.1.
+- [x] **P0-2 Cut scaling (razor phase measured; delete and relink NOT measured, see "Phase 0/1 outcome").** On a real timeline cut with 500 and then 1000 pieces (use the existing `Cut` button with a synthetic markers file), record seconds for the razor phase. *Done when:* a 3-row table replaces the extrapolation in section 7.1.
 - [x] **P0-3 Audio start offset (see "Phase 0/1 outcome").** For 5 real Twitch VOD files (and an OBS file), run `ffmpeg -i file` and record the audio stream `start:` value. *Done when:* a one-line conclusion ("always < 1 frame" or "shift needed") is in this file.
 - [x] **P0-4 LuckyDownloader ffmpeg location (see "Phase 0/1 outcome").** Inspect LuckyDownloader (or ask/check standard install/appData paths on Windows and macOS) to record the exact path(s) where it stores or installs `ffmpeg`. *Done when:* the exact path list for step (3) of `findFfmpeg` in section 6.2 is recorded in this file.
 
@@ -332,13 +332,13 @@ On the uploaded zip, `npm test` = **126 tests, 124 pass, 2 fail**. Both failures
 - [x] **P1-6** `test/silence-adapter.test.js`: build a silence file, run it through the **unmodified** `markers-core` chain exactly as in section 3.3, assert keep/gap counts, `planGapDelete.ok`, cut points on whole frames at 6 frame rates.
 - [x] **P1-7** Change `pickMarkersFile` (6.5) + tests.
 - [x] **P1-8** Add the new file to `npm run check` in `package.json`.
-- [ ] **P1-9 Golden test against real auto-editor.** Build auto-editor from the clone (or use a release that has `--smooth`; check with `auto-editor --help | grep smooth`). Generate fixtures per Appendix B for 2 media files (mono; stereo with left-only mic) and commit the expected `levels` and keep ranges. *Done when:* `silence-core` reproduces the expected levels within 1e-4 and the keep ranges **exactly**.
+- [x] **P1-9 (SKIPPED by owner decision: rely on the component tests; see "Phase 0/1 outcome").** Golden test against real auto-editor. Build auto-editor from the clone (or use a release that has `--smooth`; check with `auto-editor --help | grep smooth`). Generate fixtures per Appendix B for 2 media files (mono; stereo with left-only mic) and commit the expected `levels` and keep ranges. *Done when:* `silence-core` reproduces the expected levels within 1e-4 and the keep ranges **exactly**.
 
 ### Phase 2 — Node analyzer
-- [ ] **P2-1** `cep-panel/js/silence.js`: `findFfmpeg` (order in 6.2) with an injectable `spawn`/`fs` so it can be mocked.
-- [ ] **P2-2** `probe` using `parseFfmpegInfo`.
-- [ ] **P2-3** `measure` (stream → accumulator, aligned buffers, progress, stop, error cases).
-- [ ] **P2-4** `test/silence-run.test.js` using a **fake ffmpeg** (a small Node script emitting synthetic PCM, chosen via the injectable path). Cases: success; ENOENT; exit code 1; truncated output; stop mid-stream; odd-length chunks; 2 audio streams combined by max.
+- [x] **P2-1** `cep-panel/js/silence.js`: `findFfmpeg` (order in 6.2) with an injectable `spawn`/`fs` so it can be mocked.
+- [x] **P2-2** `probe` using `parseFfmpegInfo`.
+- [x] **P2-3** `measure` (stream → accumulator, aligned buffers, progress, stop, error cases).
+- [x] **P2-4** `test/silence-run.test.js` using a **fake ffmpeg** (a small Node script emitting synthetic PCM, chosen via the injectable path). Cases: success; ENOENT; exit code 1; truncated output; stop mid-stream; odd-length chunks; 2 audio streams combined by max.
 
 ### Phase 3 — Runner integration
 - [ ] **P3-1** R1–R3 (mode, settings override, no markers) + tests that read `getSettings()` in silence mode with non-zero pad fields and see zeros.
@@ -646,8 +646,18 @@ Panel log from the owner's real Premiere (screenshot): CEP runtime 12.0.1; host 
 - **Consequence:** the Node side runs **Node 17.7.2**. Write `silence.js` for it: no `fetch`, no Node 18+ APIs (`Array.prototype.findLast`, `fs.glob`, `AbortSignal.any`...). The test runner here is Node 22, so a test passing is not proof the API exists in 17.
 - **Open:** the same check on macOS Premiere (R8). The spike "Node check" log stays until Phase 2 replaces it.
 
-### P0-2 Cut scaling: files ready, NOT measured
-`tools/synthetic/500/` and `tools/synthetic/1000/` hold one `.markers.json` each for the owner's Zentreya VOD (3130.01 s, sequence 60 fps); the real planner reports exactly 500 and 1000 cuts. They have the same file name, so only ONE may sit next to the video at a time. Needs the razor time from a real run; the 3-row table replacing section 7.1's extrapolation is still to write.
+### P0-2 Cut scaling: MEASURED (razor phase only)
+Real Premiere 26.5.0 on Windows, the owner's Zentreya VOD (3130.01 s), 60 fps sequence, one clip on V1/A1, synthetic plans, every check PASS (no holes, source continuous, all cuts on planned frames, worst edge error 0.0000):
+
+| Cuts | Razor calls | Cut phase | Whole run (incl. 2.5 s preflight) | Longest single call | Panel's old model (section 7.1) |
+|---:|---:|---:|---:|---:|---:|
+| 500 | 1000 | **62.1 s** | 65.4 s | 1001 ms | 103 s |
+| 1000 | 2000 | **250.0 s** | 254.6 s | 1317 ms | 400 s |
+
+- **Quadratic confirmed:** 1000 cuts took 4.03x the time of 500 (a perfect square law is 4.0x). Fit: cut phase ~ **2.5e-4 x cuts^2 seconds** (62 s at 500, 250 s at 1000; ~560 s = 9.4 min at the default budget of 1500, ~1000 s = 16.7 min at 2000, extrapolated).
+- The old model (`4 + 15.7 x (cuts/199)^2`) **overestimates by about 40%** at these sizes. It is safe (too slow, never too fast) but it is not the truth. Retuning it also changes the estimates Twitch mode shows, so it is an owner decision, not done yet.
+- **Delete phase measured later (500-cut timeline, second run):** 251 gaps deleted in **64.7 s** (0.258 s per gap; the panel's model says 0.165 s), whole delete run 70.7 s; the same 500 cuts took 68.8 s that run (62.1 s the first time: expect about 10% run-to-run noise). The owner decided NOT to retune the panel's estimate (speed depends on the machine); it stays as is.
+- **Not measured:** the relink phase.
 
 ### P0-3 Audio start offset (ffprobe `start_time`, owner's files)
 | File | video start | audio start |
@@ -669,10 +679,21 @@ Panel log from the owner's real Premiere (screenshot): CEP runtime 12.0.1; host 
 - Portable/app-bundle locations (`<APP_DIR>`, `<APP_DIR>/bin`) are LuckyDownloader's own and not known to the panel: skip them.
 ffprobe is looked up in the same folder as the ffmpeg that was found first, then by the same list.
 
-### P1-9 Golden test against real auto-editor: BLOCKED, not done
-- PyPI release 29.3.1 has `--margin` but no `--smooth`.
-- auto-editor HEAD (a602b0e, 2026-11-07) has `--smooth`. Nim 2.2.15 nightly downloads from GitHub and works here, and `nimcrypto` 0.7.3 can be cloned from GitHub (`nimble` itself cannot reach its package list). A dynamic build (`-d:dynamic`) compiles Nim fine but fails in C: HEAD needs **FFmpeg >= 7.1** (`enum AVCodecConfig`), this machine has 6.1. Building FFmpeg from source (`nimble makeff`) was not tried.
-- Meanwhile the unit tests check each algorithm component against auto-editor's specification, as the owner noted.
+### P1-9 Golden test against real auto-editor: SKIPPED (owner decision)
+Not possible here: auto-editor HEAD needs FFmpeg >= 7.1 (this machine has 6.1); release 29.3.1 has `--margin` but no `--smooth`. Owner chose to rely on the component tests in `test/silence-core.test.js` (margin, min cut / min clip smoothing, chunkify, peak accumulator, per specification). **Risk accepted:** the whole pipeline has never been compared output-for-output with real auto-editor. If Silence results ever differ from auto-editor on the same file, this is the first place to look.
 
 ### Changes in this step
 `src/silence-core.js`: new `parseFfprobeStarts(csv)` and `audioShift(videoStart, audioStart, fps)`; 3 real ffprobe fixtures; 4 new tests. `parseFfmpegInfo` is unchanged and stays the source of duration, rate, channels, titles. Sections 6.1/6.2/R4 above are superseded by this: `probe()` = `ffmpeg -i` (info) + `ffprobe` (starts), and `analyze()` ranges for stream k are shifted by `audioShift(videoStart, audioStarts[k], fps)` before the per-frame max over streams is taken... **correction, recorded so Phase 2 does not copy the old text:** shift each stream's *levels* (or ranges) first, then combine; do not combine first.
+
+---
+
+## Phase 2 outcome (Node analyzer)
+
+**Delivered:** `cep-panel/js/silence.js` (`findFfmpeg`, `probe`, `measure`, `candidatePaths`, all with injectable `spawn/env/platform/home/now`), `shiftLevels` and `combineMax` in `src/silence-core.js`, `mock/fake-ffmpeg.js` (a fake ffmpeg/ffprobe that is a real child process), `test/silence-run.test.js` (27 tests). `npm run check` now covers `silence.js`.
+- **Not wired yet (by design):** `silence.js` is not loaded by `index.html` and not in the installers' file lists (P4-1, P5-1). Nothing in the panel calls it, so the panel behaves exactly as before. The temporary "Node check" log in `runner.js` stays until Phase 3/4 replaces it with real ffmpeg detection.
+- **Shifts happen per stream, then streams are combined** (the correction recorded in "Phase 0/1 outcome"): `measure` applies `shiftLevels(levels, round(shift*fps), round(duration*fps))` to each stream and then `combineMax`. The caller passes `streams: [{index, shift}]` with `shift = audioShift(videoStart, audioStart, fps)` from `probe()`.
+- **ffprobe is optional:** without it `probe()` returns `startsKnown: false` and a warning; the caller decides whether to continue with shift 0 (OBS files can then be 0.2 s off). Phase 3 must show that warning in the log.
+- **Search order (as built):** chosen path, `LT_FFMPEG`, `LUCKYDOWNLOADER_TOOLS_DIR`, `LUCKYTWITCH_TOOLS_DIR`, per-OS LuckyDownloader/LuckyTwitch folders, macOS Homebrew/MacPorts folders, bare name (PATH), Windows `C:\ffmpeg\bin` + WinGet Links + Scoop shims + Chocolatey. The last three Windows entries are the usual locations but were **not verified on the owner's machine**; every candidate is validated by running `-version` (5 s limit), so a wrong guess costs nothing.
+- **Bug found by the tests and fixed:** an env var that is empty or only spaces was used as a folder name; now treated as not set.
+- **Real tools (sandbox, ffmpeg 6.1.1):** `findFfmpeg` found them on PATH; `probe` read an audio start of 0.478 s; `measure` decoded 600 s of audio in 1.17 s (about 7 s per hour, matching section 7's ~6 s/hour) with a flat heap (6 MB), and a 10-second on/off tone gave exactly the 60 expected speech ranges with the Balanced preset. **Not run inside Premiere/CEP** (Node 17.7.2, `--mixed-context`): the code uses only `child_process.spawn`, `Buffer`, typed arrays and timers, but that is unverified until Phase 4 loads it in the panel.
+- **Fake-ffmpeg lesson:** `node --test` runs every `.js` under `test/`, so helpers live in `mock/`. The fake once truncated its own output with `process.exit`; the 90% truncation check in `measure` caught it, which is the check doing its job.

@@ -209,6 +209,29 @@ function audioShift(videoStart, audioStart, fps) {
   return Math.abs(off) >= half ? off : 0;
 }
 
+// ---- level arrays: time shift and combining several audio streams (Phase 2) -------------------------------------------------
+/**
+ * Moves a levels array (one value per frame) later (frames > 0: the audio started late, so silence is put in front) or earlier
+ * (frames < 0: the first |frames| values are dropped). If `total` is a number the result is cut or padded with 0 (silence) to exactly that many
+ * frames. Returns a NEW array; never throws (null input is an empty array).
+ */
+function shiftLevels(levels, frames, total) {
+  const src = levels || [], n = Math.trunc(frames) || 0;
+  let out = n > 0 ? new Array(n).fill(0).concat(src) : n < 0 ? src.slice(-n) : src.slice();
+  if (typeof total === "number" && total >= 0) {
+    if (out.length > total) out = out.slice(0, total);
+    else while (out.length < total) out.push(0);
+  }
+  return out;
+}
+
+/** Per-frame maximum of several levels arrays ("any audio stream loud means loud", like auto-editor). Shorter arrays count as silent past their end. */
+function combineMax(list) {
+  const arrs = (list || []).filter((a) => a && a.length), len = arrs.reduce((m, a) => Math.max(m, a.length), 0), out = new Array(len).fill(0);
+  for (const a of arrs) for (let i = 0; i < a.length; i++) if (a[i] > out[i]) out[i] = a[i];
+  return out;
+}
+
 // ---- run-time estimate and summary --------------------------------------------------------------------------------------------
 /**
  * Rough seconds for a cut + delete + relink run: the same model as runner.js planTodo() (fitted to real runs of 169-199 cuts, so beyond
@@ -255,6 +278,6 @@ function summarize(ranges, durationSec, fps, planCounts) {
   return { speechSec: speech, silenceSec: silence, removedPct: dur > 0 ? (100 * silence) / dur : 0, silences, cuts, keeps, estSeconds: est.total, est };
 }
 
-const LT_SILENCE_API = { buildSilenceFile, DEFAULTS, PRESETS, toFrames, PeakAccumulator, levelsToMask, applyMargin, applySmoothing, chunkify, analyze, thresholdToDb, dbToThreshold, hashParams, parseFfmpegInfo, parseFfprobeStarts, audioShift, estimateRunSeconds, summarize };
+const LT_SILENCE_API = { buildSilenceFile, DEFAULTS, PRESETS, toFrames, PeakAccumulator, levelsToMask, applyMargin, applySmoothing, chunkify, analyze, thresholdToDb, dbToThreshold, hashParams, parseFfmpegInfo, parseFfprobeStarts, audioShift, shiftLevels, combineMax, estimateRunSeconds, summarize };
 if (typeof module !== "undefined" && module.exports) module.exports = LT_SILENCE_API;
 if (typeof window !== "undefined") window.LTSilence = LT_SILENCE_API;

@@ -4,7 +4,7 @@
   "private": true,
   "description": "Premiere Pro (CEP) panel that imports the .markers.json written by LuckyTwitch Downloader and edits the timeline: markers, cuts, deletes, relink",
   "scripts": {
-    "check": "node --check src/markers-core.js && node --check src/guard.js && node --check src/timecode.js && node --check src/progress.js && node --check src/silence-core.js && node --check cep-panel/js/runner.js && node --check cep-panel/js/ui.js",
+    "check": "node --check src/markers-core.js && node --check src/guard.js && node --check src/timecode.js && node --check src/progress.js && node --check src/silence-core.js && node --check cep-panel/js/silence.js && node --check cep-panel/js/runner.js && node --check cep-panel/js/ui.js",
     "test": "node --test",
     "pack": "python ../tools/package_cep.py"
   }

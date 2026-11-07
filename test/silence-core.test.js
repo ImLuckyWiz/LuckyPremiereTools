@@ -326,3 +326,23 @@ test("audioShift: a late VIDEO start means the audio is ahead, so the shift is n
   assert.ok(Math.abs(S.audioShift(0.016667, 0, 60) + 0.016667) < 1e-9);
   assert.ok(Math.abs(S.audioShift(0.032667, 0, 60) + 0.032667) < 1e-9);
 });
+
+// ---- Phase 2 helpers: shiftLevels, combineMax ---------------------------------------------------------------------------------------
+test("shiftLevels: late audio puts silence in front, early audio drops frames, total pads or cuts, the input is never changed", () => {
+  const a = [0.1, 0.2, 0.3];
+  assert.deepEqual(S.shiftLevels(a, 2), [0, 0, 0.1, 0.2, 0.3]);
+  assert.deepEqual(S.shiftLevels(a, -1), [0.2, 0.3]);
+  assert.deepEqual(S.shiftLevels(a, 0), a);
+  assert.deepEqual(S.shiftLevels(a, 2, 4), [0, 0, 0.1, 0.2]);
+  assert.deepEqual(S.shiftLevels(a, -1, 4), [0.2, 0.3, 0, 0]);
+  assert.deepEqual(S.shiftLevels(a, -5), []);
+  assert.deepEqual(S.shiftLevels(null, 2, 3), [0, 0, 0]);
+  assert.deepEqual(a, [0.1, 0.2, 0.3]);
+});
+test("combineMax: per-frame maximum, shorter arrays are silent past their end, empty input is empty", () => {
+  assert.deepEqual(S.combineMax([[0, 0.5, 0], [0.2, 0, 0, 0.7]]), [0.2, 0.5, 0, 0.7]);
+  assert.deepEqual(S.combineMax([[0.3]]), [0.3]);
+  assert.deepEqual(S.combineMax([]), []);
+  assert.deepEqual(S.combineMax(null), []);
+  assert.deepEqual(S.combineMax([[], null]), []);
+});
