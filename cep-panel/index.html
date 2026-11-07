@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LuckyTwitch Markers</title>
+<style>
+  :root { --bg:#232323; --card:#2b2b2b; --line:#3e3e3e; --txt:#e8e8e8; --mut:#9b9b9b; --acc:#9146ff; --acc2:#a970ff; --ok:#4fbf80; --warn:#e8b84a; --bad:#e5604d; }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--txt); font: 12px/1.45 "Segoe UI", Arial, sans-serif; padding: 10px 10px 18px 10px; }
+  button { font: inherit; color: var(--txt); background: #3a3a3a; border: 1px solid #575757; border-radius: 4px; padding: 5px 10px; cursor: pointer; }
+  button:hover:not(:disabled) { background: #474747; }
+  button:disabled { opacity: .4; cursor: not-allowed; }
+  .muted { color: var(--mut); }
+  .small { padding: 3px 8px; font-size: 11px; }
+
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+  .brand { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+  .brand .name { font-size: 15px; font-weight: 700; letter-spacing: .2px; }
+  .brand .logo { color: var(--acc2); font-size: 13px; }
+  .ver { color: var(--mut); font-size: 10px; }
+  .pill { font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 10px; border: 1px solid var(--line); white-space: nowrap; color: var(--mut); }
+  .pill.p-ok { color: var(--ok); border-color: #2f6b4a; background: #1f2f27; }
+  .pill.p-warn { color: var(--warn); border-color: #75612a; background: #2f2a1c; }
+  .pill.p-bad { color: var(--bad); border-color: #7a3a32; background: #33201d; }
+  .pill.p-run { color: #fff; border-color: var(--acc); background: #3a2a63; }
+
+  .banner { color: var(--warn); background: #2d2a1e; border: 1px solid #5f5126; border-radius: 4px; padding: 5px 8px; margin-bottom: 8px; font-size: 11px; }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; margin-bottom: 8px; }
+  .cardhead { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--mut); margin-bottom: 4px; }
+  .cardhead button { text-transform: none; letter-spacing: 0; font-weight: 400; }
+
+  .filerow { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .filemain { min-width: 0; flex: 1; }
+  .filename { font-weight: 600; overflow-wrap: anywhere; }
+  .filebtns { display: flex; flex-direction: column; gap: 4px; align-items: stretch; }
+  .filebtns button { margin: 0; }
+
+  .state { font-weight: 600; margin: 4px 0 2px 0; }
+  ul.plan { list-style: none; margin: 4px 0 4px 0; padding: 0; }
+  ul.plan li { display: flex; gap: 8px; padding: 1px 0; }
+  ul.plan .ic { width: 14px; text-align: center; flex: none; }
+  ul.plan li.pf-todo .ic::before { content: "\25CB"; color: var(--acc2); }
+  ul.plan li.pf-done .ic::before { content: "\2713"; color: var(--ok); }
+  ul.plan li.pf-skip .ic::before { content: "\2013"; color: var(--mut); }
+  ul.plan li.pf-done .tx, ul.plan li.pf-skip .tx { color: var(--mut); }
+  .notes { color: var(--warn); white-space: pre-wrap; margin-top: 4px; }
+  .problems { color: var(--bad); white-space: pre-wrap; margin-top: 4px; }
+
+  .actions { display: flex; gap: 6px; margin: 2px 0 8px 0; }
+  button.primary { flex: 1; text-align: center; background: var(--acc); border-color: var(--acc2); color: #fff; font-size: 15px; font-weight: 700; padding: 9px 10px; }
+  button.primary:hover:not(:disabled) { background: var(--acc2); }
+  button.primary .sub { display: block; font-size: 11px; font-weight: 400; opacity: .9; margin-top: 1px; }
+  button.stop { flex: none; width: 74px; color: var(--bad); border-color: #7a3a32; font-weight: 700; }
+  button.stop:hover:not(:disabled) { background: #442a27; }
+
+  #rAskBox { display: none; border: 1px solid var(--warn); background: #2d2a1e; border-radius: 6px; padding: 8px 10px; margin: 0 0 8px 0; }
+  #rAskText { white-space: pre-wrap; margin-bottom: 8px; }
+  #rYes { background: var(--acc); border-color: var(--acc2); color: #fff; font-weight: 700; margin-right: 6px; }
+
+  .bar { height: 8px; background: #1a1a1a; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .fill { height: 100%; width: 0; background: var(--acc); transition: width .25s ease; }
+  .fill.f-done { background: var(--ok); }
+  .fill.f-bad { background: var(--bad); }
+  .fill.f-warn { background: var(--warn); }
+  .progline { display: flex; justify-content: space-between; gap: 8px; margin: 5px 0 6px 0; }
+  ul.steps { list-style: none; margin: 0; padding: 0; }
+  ul.steps li { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+  ul.steps .dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #5a5a5a; flex: none; text-align: center; font-size: 9px; line-height: 10px; color: #111; }
+  ul.steps .lbl { flex: 1; }
+  ul.steps .cnt { color: var(--mut); font-variant-numeric: tabular-nums; }
+  ul.steps li.st-running .dot { border-color: var(--acc2); animation: pulse 1.1s ease-in-out infinite; }
+  ul.steps li.st-running .lbl { font-weight: 700; }
+  ul.steps li.st-done .dot { background: var(--ok); border-color: var(--ok); }
+  ul.steps li.st-done .dot::after { content: "\2713"; }
+  ul.steps li.st-failed .dot { background: var(--bad); border-color: var(--bad); }
+  ul.steps li.st-failed .dot::after { content: "\2715"; }
+  ul.steps li.st-stopped .dot { background: var(--warn); border-color: var(--warn); }
+  ul.steps li.st-stopped .dot::after { content: "\25A0"; }
+  ul.steps li.st-skipped { opacity: .45; }
+  ul.steps li.st-pending { color: var(--mut); }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(169,112,255,.6); } 100% { box-shadow: 0 0 0 7px rgba(169,112,255,0); } }
+
+  .status { border-radius: 6px; padding: 7px 10px; margin-bottom: 8px; border: 1px solid var(--line); white-space: pre-wrap; }
+  .status.ok { color: var(--ok); background: #1f2f27; border-color: #2f6b4a; }
+  .status.warn { color: var(--warn); background: #2f2a1c; border-color: #75612a; }
+  .status.bad { color: #ffb4a8; background: #33201d; border-color: #7a3a32; }
+
+  details.card > summary { cursor: pointer; font-weight: 700; list-style: none; outline: none; }
+  details.card > summary::-webkit-details-marker { display: none; }
+  details.card > summary::before { content: "\25B8"; display: inline-block; width: 14px; color: var(--mut); }
+  details.card[open] > summary::before { content: "\25BE"; }
+  details.card > summary .muted { font-weight: 400; margin-left: 6px; }
+  details.card[open] > summary { margin-bottom: 6px; }
+
+  .step { display: grid; grid-template-columns: 138px 1fr; gap: 4px 8px; align-items: center; padding: 3px 0; border-top: 1px solid #353535; }
+  .step:first-of-type { border-top: 0; }
+  .step button { width: 100%; margin: 0; text-align: left; }
+  .step .hint { color: var(--mut); font-size: 11px; }
+  .step .hint b { color: var(--txt); font-weight: 600; }
+  .tools { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; padding-top: 6px; border-top: 1px solid #353535; }
+
+  .grp { padding: 4px 0 6px 0; border-top: 1px solid #353535; }
+  .grp:first-of-type { border-top: 0; padding-top: 0; }
+  .gh { font-size: 11px; font-weight: 700; color: var(--mut); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+  .fld { display: flex; align-items: center; gap: 6px; padding: 2px 0; }
+  .fld .l { flex: 1; }
+  .fld input[type=text] { width: 58px; text-align: right; background: #181818; color: var(--txt); border: 1px solid #4a4a4a; border-radius: 3px; padding: 3px 5px; font: inherit; }
+  .fld input[type=text]:focus { outline: 1px solid var(--acc2); }
+  .chk { display: flex; align-items: center; gap: 6px; padding: 2px 0; }
+  .err { color: var(--bad); margin-top: 4px; }
+
+  textarea { width: 100%; height: 260px; background: #161616; color: #d6d6d6; border: 1px solid #444; border-radius: 4px; font: 11px Consolas, monospace; resize: vertical; }
+  .row { display: flex; gap: 6px; margin-top: 6px; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="brand"><span class="logo">&#9670;</span><span class="name">LuckyTwitch Markers</span><span class="ver" id="ver">v0.15.0</span></div>
+    <span class="pill" id="pill">Starting</span>
+  </div>
+
+  <div class="banner">Save the project first (Ctrl+S) and do not touch Premiere while a run is active. Ctrl+Z is only a backup.</div>
+
+  <section class="card" id="fileCard">
+    <div class="cardhead"><span>Markers file</span></div>
+    <div class="filerow">
+      <div class="filemain"><div class="filename" id="fileName">Looking for it</div><div class="muted" id="fileHow"></div></div>
+      <div class="filebtns">
+        <button id="rChoose" class="small" title="Pick a .markers.json by hand">Choose&hellip;</button>
+        <button id="rAuto" class="small" title="Go back to the file next to the video" hidden>Use the file next to the video</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="pfCard">
+    <div class="cardhead"><span>What will happen</span><button id="bRefresh" class="small" title="Read the timeline again">&#8635; Refresh</button></div>
+    <div class="muted" id="pfSeq"></div>
+    <div class="state" id="pfState">Reading the timeline</div>
+    <ul class="plan" id="pfList">
+      <li id="pfMarkers" class="pf-todo"><span class="ic"></span><span class="tx" id="pfMarkersTx"></span></li>
+      <li id="pfCuts" class="pf-todo"><span class="ic"></span><span class="tx" id="pfCutsTx"></span></li>
+      <li id="pfDeletes" class="pf-todo"><span class="ic"></span><span class="tx" id="pfDeletesTx"></span></li>
+      <li id="pfRelink" class="pf-todo"><span class="ic"></span><span class="tx" id="pfRelinkTx"></span></li>
+    </ul>
+    <div class="muted" id="pfTime"></div>
+    <div class="notes" id="pfNotes"></div>
+    <div class="problems" id="pfProblems"></div>
+  </section>
+
+  <div class="actions">
+    <button id="rAll" class="primary" title="Markers, cuts, deletes and relink in one go. One confirm. Press again to resume after a stop."><span id="rAllLabel">Do it all</span><span class="sub" id="rAllSub"></span></button>
+    <button id="bCheck" class="primary" hidden><span>Check again</span><span class="sub">Fix what is listed above, then check</span></button>
+    <button id="rStop" class="stop" disabled title="Halts after the current chunk. Everything done so far stays consistent.">Stop</button>
+  </div>
+
+  <div id="rAskBox">
+    <div id="rAskText"></div>
+    <button id="rYes">Continue</button><button id="rNo">Cancel</button>
+  </div>
+
+  <section class="card" id="progCard" hidden>
+    <div class="bar"><div class="fill" id="progFill"></div></div>
+    <div class="progline"><span id="progText"></span><span class="muted" id="progTime"></span></div>
+    <ul class="steps">
+      <li id="stMarkers" class="st-pending"><span class="dot"></span><span class="lbl">Markers</span><span class="cnt" id="stMarkersCnt"></span></li>
+      <li id="stCuts" class="st-pending"><span class="dot"></span><span class="lbl">Cuts</span><span class="cnt" id="stCutsCnt"></span></li>
+      <li id="stDeletes" class="st-pending"><span class="dot"></span><span class="lbl">Delete the gaps</span><span class="cnt" id="stDeletesCnt"></span></li>
+      <li id="stRelink" class="st-pending"><span class="dot"></span><span class="lbl">Link video and audio</span><span class="cnt" id="stRelinkCnt"></span></li>
+      <li id="stFinal" class="st-pending"><span class="dot"></span><span class="lbl">Final check</span><span class="cnt" id="stFinalCnt"></span></li>
+    </ul>
+  </section>
+  <div class="status" id="statusMsg" hidden></div>
+
+  <details class="card" id="stepsBox">
+    <summary>Single steps</summary>
+    <div class="step"><button id="rMarkers" title="Adds the markers to the clip. The timeline is not touched.">Add markers</button><span class="hint">Only the markers. <b id="cMarkers"></b></span></div>
+    <div class="step"><button id="rCuts" title="Cuts V1 and A1 at the plan's points. Stop halts, run again resumes.">Cut</button><span class="hint">Cut V1 + A1. <b id="cCuts"></b></span></div>
+    <div class="step"><button id="rDel" title="Ripple-deletes the gap pieces, V1 then A1, last gap first.">Delete the gaps</button><span class="hint">Ripple delete. <b id="cDel"></b></span></div>
+    <div class="step"><button id="rLink" title="Links the remaining V1/A1 pairs (checked with getLinkedItems).">Link video and audio</button><span class="hint">Relink the pairs. <b id="cLink"></b></span></div>
+    <div class="tools">
+      <button id="rDry" class="small" title="Reads everything and prints every failsafe check into the log. Changes nothing.">Detailed check (log)</button>
+      <button id="rRemove" class="small" title="Removes exactly the markers the plan adds (same name, time and comment). Other markers stay.">Remove the plan's markers</button>
+    </div>
+  </details>
+
+  <details class="card" id="setBox">
+    <summary>Settings<span class="muted" id="setSum"></span></summary>
+    <div class="grp">
+      <div class="gh">Recipe</div>
+      <label class="fld"><span class="l">Preset</span><select id="recipeSelect" style="flex:1; background:#181818; color:var(--txt); border:1px solid #4a4a4a; border-radius:3px; padding:3px 5px;"><option value="Default">Default</option></select></label>
+    </div>
+    <div class="grp">
+      <div class="gh">Safety cut: footage kept around every clip</div>
+      <label class="fld"><span class="l">Before each clip</span><input id="padBefore" type="text" value="0"><span class="muted">s</span></label>
+      <label class="fld"><span class="l">After each clip</span><input id="padAfter" type="text" value="0"><span class="muted">s</span></label>
+      <label class="fld"><span class="l">Merge clips closer than</span><input id="mergeGap" type="text" value="0"><span class="muted">s</span></label>
+      <div class="muted">10 and 10 keeps 10 s of safety before and after every clip. Clips that touch after padding become one piece. If you change this AFTER cutting, Delete refuses (the cuts no longer match the plan): change it back, or undo.</div>
+    </div>
+    <div class="grp">
+      <div class="gh">What to cut</div>
+      <label class="fld"><span class="l">Limit to chapter</span><select id="limitChapter" style="flex:1; background:#181818; color:var(--txt); border:1px solid #4a4a4a; border-radius:3px; padding:3px 5px;"><option value="">All chapters (whole file)</option></select></label>
+      <label class="chk"><input id="recipeCutChapters" type="checkbox"> Also cut at every game / category change</label>
+    </div>
+    <div class="grp">
+      <div class="gh">Do it all</div>
+      <label class="chk"><input id="recipeMarkers" type="checkbox" checked> Also add the markers (first step)</label>
+    </div>
+    <div class="grp">
+      <div class="gh">Safety limits</div>
+      <label class="fld"><span class="l">Refuse to delete more than</span><input id="maxDeletePct" type="text" value="99"><span class="muted">%</span></label>
+      <label class="fld"><span class="l">Need at least this many pieces to keep</span><input id="minKeepPieces" type="text" value="1"></label>
+    </div>
+    <div class="err" id="setErr"></div>
+  </details>
+
+  <details class="card" id="logBox">
+    <summary>Log<span class="muted">for troubleshooting</span></summary>
+    <textarea id="log" readonly></textarea>
+    <div class="row"><button id="bCopy" class="small">Copy log</button><button id="bClear" class="small">Clear</button></div>
+  </details>
+
+  <script src="shared/markers-core.js"></script>
+  <script src="shared/guard.js"></script>
+  <script src="shared/progress.js"></script>
+  <script src="js/runner.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>

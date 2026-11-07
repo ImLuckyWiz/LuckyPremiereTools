@@ -1,0 +1,54 @@
+{
+  "format": "luckytwitch-markers",
+  "version": 1,
+  "name": "Streamer - 2026-01-01 - 1 - part1",
+  "duration": 70.0,
+  "fps": 29.97,
+  "part": {
+    "start": 1200.0,
+    "end": 1270.0
+  },
+  "source": {
+    "url": "https://www.twitch.tv/videos/1",
+    "vod_id": "1",
+    "title": "Big stream",
+    "streamer": "Streamer",
+    "date": "2026-01-01"
+  },
+  "markers": [
+    {
+      "kind": "game",
+      "name": "Just Chatting",
+      "start": 0,
+      "end": 50,
+      "game": "Just Chatting",
+      "comment": "Game / category"
+    },
+    {
+      "kind": "clip",
+      "name": "Funny moment (bob, 120 views)",
+      "start": 7,
+      "end": 30,
+      "views": 120,
+      "comment": "bob · 120 views · https://clips.twitch.tv/c1",
+      "clips": [
+        {
+          "id": "c1",
+          "title": "Funny moment",
+          "creator": "bob",
+          "views": 120,
+          "duration": 20.0,
+          "url": "https://clips.twitch.tv/c1"
+        }
+      ]
+    },
+    {
+      "kind": "game",
+      "name": "Resident Evil 2",
+      "start": 50,
+      "end": 70,
+      "game": "Resident Evil 2",
+      "comment": "Game / category"
+    }
+  ]
+}

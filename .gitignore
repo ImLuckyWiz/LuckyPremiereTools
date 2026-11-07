@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build and distribution packages
+dist/
+build/
+*.zip
+*.zxp
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE and Editor files
+.vscode/
+.idea/
